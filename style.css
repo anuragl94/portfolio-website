@@ -229,6 +229,10 @@ main:has(#contact-page:checked) label[for="contact-page"] {
   }
 }
 
+#mobile-only {
+  display: none;
+}
+
 /* Util classes */
 .spread-around {
   display: flex;
@@ -241,22 +245,78 @@ main:has(#contact-page:checked) label[for="contact-page"] {
   color: color-mix(in srgb, var(--color-text) 75%, var(--color-bg));
 }
 
-@media screen and (hover: none) {
+.mobile-only {
+  display: none;
+}
 
+@media screen and (hover: none) {
   /* Message for smartphone users */
-  body::after {
-    content: "Hi, I've painstakingly developed this website with some fancy CSS tricks for desktops. Please visit this from one. Sorry!";
-    position: fixed;
-    top: 0;
+  #mobile-dialog:open {
+    display: unset;
+    height: 100%;
+    width: 100%;
     left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0;
     display: flex;
-    padding: 2em;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-bg);
-    z-index: 9999;
+    gap: 24px;
+    border: none;
+    padding: 32px;
+  }
+
+  .mobile-only {
+    display: initial;
+  }
+
+  /* Simplified styling for mobile users */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: clip;
+  }
+
+  main {
+    border: none;
+    box-shadow: none;
+    padding-top: 0;
+  }
+
+  nav {
+    anchor-name: --navigation-pane;
+  }
+
+  #menu-handle {
+    position: fixed;
+    position-anchor: --navigation-pane;
+    bottom: anchor(top);
+    right: 0;
+    border: 1px solid;
+    border-width: 1px 0 0 1px;
+    width: 40px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav {
+    transition: right 200ms ease-in-out;
+  }
+
+  body:not(:has(#menu-toggle:checked)) {
+    nav {
+      right: -172px;
+    }
+  }
+
+  .page-container {
+    grid-column: 1 / -1;
+  }
+
+  .panel-group {
+    --column-count: 1;
   }
 }
 
