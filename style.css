@@ -321,7 +321,7 @@ main:has(#contact-page:checked) label[for="contact-page"] {
   }
 
   .panel-group {
-    --column-count: 1;
+    --column-count: 1 !important;
   }
 }
 
@@ -360,9 +360,19 @@ main:has(#contact-page:checked) label[for="contact-page"] {
     background: linear-gradient(90deg, var(--color-text) 15%, rgba(0, 0, 0, .3) 15%);
     background-clip: text;
   }
+
+  input[name="mobile-dialog-state"]:checked + #mobile-dialog {
+    display: none;
+  }
+
+  @supports (not (position-anchor: --navigation-pane;)) {
+    #menu-handle {
+      top: 178px;
+    }
+  }
 }
 
-@supports (not (scrollbar-color: auto; )) {
+@supports (not (scrollbar-color: auto;)) {
 
   /* Minimal scrollbar */
   ::-webkit-scrollbar {
