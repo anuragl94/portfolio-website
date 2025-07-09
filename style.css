@@ -26,6 +26,7 @@ body {
   margin: 0;
   padding: 70px;
   height: 100vh;
+  height: 100dvh;
   font-family: "Ledger", serif;
   font-weight: 400;
   font-style: normal;
@@ -243,6 +244,10 @@ main:has(#contact-page:checked) label[for="contact-page"] {
 .muted-text {
   font-size: 0.8em;
   color: color-mix(in srgb, var(--color-text) 75%, var(--color-bg));
+}
+
+#mobile-dialog {
+  display: none;
 }
 
 .mobile-only {
